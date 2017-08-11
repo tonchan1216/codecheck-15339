@@ -1,5 +1,3 @@
-import re
-
 def main(argv):
   # このコードは引数と標準出力を用いたサンプルコードです。
   # このコードは好きなように編集・削除してもらって構いません。
@@ -7,14 +5,18 @@ def main(argv):
   # This is a sample code to use arguments and outputs.
   # Edit and remove this code as you like.
   for i, v in enumerate(argv):
-    print(look_and_say(int(v)))
+    print(look_and_say(int(v))[:500])
 
-#再起関数
+#秘密の規則にそった数列を生成する関数
 def look_and_say(num):
-	if num == 1:
-		return '1'
-	else:
-		return translate_sequence(look_and_say(num-1))
+	temp = ''
+
+	for i in range(1, num+1):
+		if i == 1:
+			temp = '1'
+		else:
+			temp = translate_sequence(temp)
+	return temp
 
 #入力文字列をルールに従って変換
 def translate_sequence(target_sequence):
@@ -41,4 +43,4 @@ def translate_sequence(target_sequence):
 
 	for x in target_list:
 		answer_sequence += str(x.count(x[0])) + x[0]
-	return answer_sequence
+	return answer_sequence[:750]
